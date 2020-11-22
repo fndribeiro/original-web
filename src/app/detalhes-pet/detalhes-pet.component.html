@@ -1,0 +1,65 @@
+<div *ngIf="pet">
+  <div style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="name">Nome do pet</label>
+        <input type="text" class="form-control"
+          [value]="pet.nome" required [(ngModel)]="pet.nome" name="petNome">
+      </div>
+
+      <div class="form-group">
+        <label for="name">Sexo do pet</label>
+        <select class="form-control" required [(ngModel)]="pet.sexoPet" name="sexoPet">
+          <ng-container *ngIf="pet.sexoPet.toString() === 'M'; else femeaSelected">
+            <option value="M" selected>Macho</option>
+            <option value="F">Femea</option>
+          </ng-container>
+          <ng-template #femeaSelected>
+            <option value="M">Macho</option>
+            <option value="F"selected>Femea</option>
+          </ng-template>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Tipo do pet</label>
+        <select class="form-control" required [(ngModel)]="pet.tipoPet" name="tipoPet">
+          <ng-container *ngIf="pet.tipoPet.toString() === 'Gato'; else cachorroSelected">
+            <option value="Gato" selected>Gato</option>
+            <option value="Cachorro">Cachorro</option>
+          </ng-container>
+          <ng-template #cachorroSelected>
+            <option value="Gato">Gato</option>
+            <option value="Cachorro" selected>Cachorro</option>
+          </ng-template>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Pet castrado</label>
+        <select class="form-control" required [(ngModel)]="pet.castrado" name="castrado">
+          <ng-container *ngIf="pet.castrado; else naoCastrado">
+            <option value="true" selected>Sim</option>
+            <option value="false">Não</option>
+          </ng-container>
+          <ng-template #naoCastrado>
+            <option value="true">Sim</option>
+            <option value="false" selected>Não</option>
+          </ng-template>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="name">Foto do pet</label>
+        <input type="text" placeholder="Insira a URL da foto."
+          class="form-control"
+            [value]="pet.imageUrl" required [(ngModel)]="pet.imageUrl" name="imageUrl">
+      </div>
+
+      <button type="submit" class="btn btn-success">Atualizar</button>
+    </form>
+  </div>
+
+</div>
+<br>
+<button (click)="listarPets()" class="btn btn-primary">Voltar</button><br>

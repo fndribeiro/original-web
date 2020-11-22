@@ -1,0 +1,16 @@
+<div class="pet-card" *ngFor="let pet of pets">
+
+  <div class="pet-nome">
+    {{ pet.nome }}
+  </div>
+
+  <div class="pet-image">
+    <img width="300" alt="Angular Logo" [src]="pet.imageUrl">
+  </div>
+
+  <div class="pet-buttons">
+    <button (click)="detalhesDoPet(pet.id)" class="btn btn-info">Detalhes</button>
+    <button (click)="removerPet(pet.id)" class="btn btn-danger">Remover</button>
+  </div>
+
+</div>
